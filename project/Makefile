@@ -1,12 +1,21 @@
-all:
-	(cd timerLib && make install)
-	(cd blink_demo && make)
-	(cd button_demo && make)
-	(cd buzzer_demo && make)
+all: libTimer.a
+
+CPU             = msp430g2553
+CFLAGS          = -mmcu=${CPU} 
+
+#switch the compiler (for the internal make rules)
+CC              = msp430-elf-gcc
+AS              = msp430-elf-as
+AR              = msp430-elf-ar
+
+libTimer.a: clocksTimer.o sr.o
+	$(AR) crs $@ $^
+
+install: libTimer.a
+	mkdir -p ../h ../lib
+	mv $^ ../lib
+	cp *.h ../h
 
 clean:
-	(cd timerLib && make clean)
-	(cd blink_demo && make clean)
-	(cd button_demo && make clean)
-	(cd buzzer_demo && make clean)
+	rm -f timerLib.a *.o
 

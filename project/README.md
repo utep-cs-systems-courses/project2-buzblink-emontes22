@@ -1,14 +1,28 @@
 ## Description
-This directory contains demo programs that demonstrate basic I/O using timer and button interrupts.
+This program uses interrupts to detect when a switch is pressed or
+released.
 
-Program | Description
-------- | -----------
-Blink   | Uses timer interrupts to flash the LEDs in a silly pattern.
-Button  | Uses interrupts to detect when a switch is pressed or released.
-Buzzer  | Emits a single continuous note from the buzzer.
+Press S1, and the green LED is illuminated.  Release it, and the red
+LED is illuminated instead.
 
-## How to Use
+## Exploration
+_LED toggle:_  A great initial project would be to modify this program to
+implement a state machine that "toggled" between the red and green LEDs
+each time the button is pressed. The LED should remain illuminated until
+the next time the button is pressed.
 
-The Makefile in this direcory contains rules to run the Makefile in each demo directory. Use **make** in this directory to build all demo programs and the timer library. Once the programs are built, you can load the program onto the MSP430 by changing into the corresponding demo directory and using **make load**.
+_Separation of duties:_ Input and output are not always so closely
+connected.  Frequently an input begins a computation that eventually
+results in an output. For example, pressing "next song" on a streaming
+audio player begins a complicated multi-stage process that eventually
+results in a different song being played.  Suggestion: start with
+something simple such as responding to the buttons using interrupts to
+set state variables, and update the LEDs when the timer interrupt
+occurs.  
 
-You may use **mspdebug rf2500 "erase"** to clear a program from the MSP430.
+_Time and button interaction:_
+Integrate the timer mechanisms from the blink demo and have the button affect the blink sequence.
+
+## Some Advice
+When creating your own variants to the demo programs,
+it's probably a good idea to keep a copy of the original program (or really understand how _git checkout_ works).  
