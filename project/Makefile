@@ -14,7 +14,7 @@ all: project.elf
 
 #additional rules for files
 
-project.elf: ${COMMON_OBJECTS} allMain.o stateMachines.o buzzer.o switches.o led.o p1_interrupt_handler.o wdInterruptHandler.o ../lib/libTimer.a
+project.elf: ${COMMON_OBJECTS} allMain.o stateMachines.o buzzer.o switches.o led.o p1_interrupt_handler.o wdInterruptHandler.o ../timerLib/libTimer.a
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 load: project.elf
