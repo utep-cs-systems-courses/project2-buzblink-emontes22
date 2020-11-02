@@ -14,7 +14,7 @@ all: project.elf
 
 #additional rules for files
 
-project.elf: ${COMMON_OBJECTS} allMain.o stateMachines.o buzzer.o switches.o led.o p2_interrupt_handler.o wdInterruptHandler.o ..//project/timerLib/libTimer.a
+project.elf: ${COMMON_OBJECTS} allMain.o stateMachines.o buzzer.o switches.o led.o p2_interrupt_handler.o wdInterruptHandler.o ../project/timerLib/libTimer.a
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 load: project.elf
@@ -25,6 +25,8 @@ clean:
 
 led.o: led.c led.h
 
-wdInterruptHandler.o: stateMachines.h
+wdInterruptHandler.o: stateMachines.h buzzer.h switches.h
 
-stateMachines.o: led.h stateMachines.h
+stateMachines.o: led.h stateMachines.h buzzer.h
+
+buzzer.o: buzzer.h
