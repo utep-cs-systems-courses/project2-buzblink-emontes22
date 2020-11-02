@@ -8,5 +8,4 @@ __interrupt_vec(WDT_VECTOR) WDT(){	/* 250 interrupts/sec */
     toggle_both_no_sound();
     blink_count = 0;
   }
-  led_update();
 }
